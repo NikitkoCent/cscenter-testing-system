@@ -31,6 +31,7 @@ func execParamsToString(params []string) string {
 func main() {
 	fl := flag.NewFlagSet("", flag.ContinueOnError)
 
+	executablePath := fl.String("exe", "", "Path to tested executable")
 	configPath := fl.String("config", "", "Path to tests configuration JSON file")
 
 	if len(os.Args) < 2 {
@@ -49,6 +50,11 @@ func main() {
 		}
 	}
 
+	if *executablePath == "" {
+		fmt.Fprintln(os.Stderr, "flag was not set: exe")
+		fl.Usage()
+		os.Exit(3)
+	}
 	if *configPath == "" {
 		fmt.Fprintln(os.Stderr, "flag was not set: config")
 		fl.Usage()
@@ -61,7 +67,7 @@ func main() {
 		os.Exit(4)
 	}
 
-	log.Printf("Tested executable path: '%s'\n", *config.Executable)
+	log.Printf("Tested executable path: '%s'\n", *executablePath)
 	log.Println("Running the tests suite ...\n")
 
 	var failedTests []string
@@ -98,9 +104,9 @@ func main() {
 			}
 		}
 
-		log.Printf("\tExecuting '%s %s' ...\n", *config.Executable, execParamsToString(test.ExecParams))
+		log.Printf("\tExecuting '%s %s' ...\n", *executablePath, execParamsToString(test.ExecParams))
 
-		cmd := exec.Command(*config.Executable, test.ExecParams...)
+		cmd := exec.Command(*executablePath, test.ExecParams...)
 		var out []byte
 
 		if test.TestedFilePath == nil {
@@ -141,6 +147,7 @@ func main() {
 			}
 			if err != nil {
 				registerFailedTest(err)
+				continue
 			}
 		}
 

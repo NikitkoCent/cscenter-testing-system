@@ -18,7 +18,6 @@ type Test struct {
 }
 
 type TestsConfig struct {
-	Executable *string `json:"executable"`
 	Tests []Test `json:"tests"`
 }
 
@@ -41,17 +40,10 @@ func ReadTestsConfig(path string) (TestsConfig, error) {
 		return result, err
 	}
 
-	createNotFoundFieldError := func (fieldName string) error {
-		return errors.New(fmt.Sprintf("'%s': field '%s' was not found.", path, fieldName))
-	}
-
 	createTestNotFoundFieldError := func (fieldName string, testName string) error {
 		return errors.New(fmt.Sprintf("'%s::%s': field '%s' was not found.", path, testName, fieldName))
 	}
 
-	if result.Executable == nil {
-		return result, createNotFoundFieldError("executable")
-	}
 	for i := range result.Tests {
 		if len(result.Tests[i].Name) == 0 {
 			result.Tests[i].Name = fmt.Sprintf("Unnamed~%d", i)
