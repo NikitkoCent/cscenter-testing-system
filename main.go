@@ -141,6 +141,7 @@ func main() {
 			}
 			if err != nil {
 				registerFailedTest(err)
+				continue
 			}
 		}
 
