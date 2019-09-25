@@ -1,4 +1,4 @@
-# cscenter-testing-system
+# cscenter-testing-system [![Actions Status](https://github.com/NikitkoCent/cscenter-testing-system/workflows/CI/badge.svg)](https://github.com/NikitkoCent/cscenter-testing-system/actions) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/NikitkoCent/cscenter-testing-system)](https://github.com/NikitkoCent/cscenter-testing-system/releases/latest) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 Testing system for Computer Science Center C++ course.
 
 ## Tests JSON configuration file format
