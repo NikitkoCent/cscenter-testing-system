@@ -29,20 +29,36 @@ func execParamsToString(params []string) string {
 }
 
 func main() {
-	configPath := flag.String("config", "", "Path to tests configuration JSON file")
+	fl := flag.NewFlagSet("", flag.ContinueOnError)
 
-	flag.Parse()
+	configPath := fl.String("config", "", "Path to tests configuration JSON file")
+
+	if len(os.Args) < 2 {
+		fmt.Fprintln(os.Stderr, "Not enough parameters.")
+		fl.Usage()
+		os.Exit(1)
+	}
+
+	err := fl.Parse(os.Args[1:])
+	if err != nil {
+		if err == flag.ErrHelp {
+			os.Exit(0)
+		} else {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(2)
+		}
+	}
 
 	if *configPath == "" {
 		fmt.Fprintln(os.Stderr, "flag was not set: config")
-		flag.Usage()
-		os.Exit(1)
+		fl.Usage()
+		os.Exit(3)
 	}
 
 	config, err := ReadTestsConfig(*configPath)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s: %v\n", *configPath, err)
-		os.Exit(2)
+		os.Exit(4)
 	}
 
 	log.Printf("Tested executable path: '%s'\n", *config.Executable)
@@ -116,7 +132,7 @@ func main() {
 
 	if len(failedTests) > 0 {
 		log.Printf("FAILED TESTS: %q\n", failedTests)
-		os.Exit(3)
+		os.Exit(5)
 	} else {
 		log.Println("All tests passed.")
 	}
