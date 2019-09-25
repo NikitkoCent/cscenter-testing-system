@@ -7,7 +7,7 @@
       "params": ["Hello, world!"],
       "reference": "tests/positive2/reference1.txt"
     },
-	{
+    {
       "name": "test2",
       "reference": "tests/positive2/reference2.txt"
     }

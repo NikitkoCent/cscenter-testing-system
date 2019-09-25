@@ -8,7 +8,7 @@
       "reference": "tests/positive3/reference1.txt",
       "tested_file": "out1.txt"
     },
-	{
+    {
       "name": "copy non-empty",
       "params": ["tests/positive3/reference2.txt", "out2.txt"],
       "reference": "tests/positive3/reference2.txt",
