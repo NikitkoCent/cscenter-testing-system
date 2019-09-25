@@ -29,6 +29,16 @@ jobs:
       - name: Running the tests
         run: ./cstest -help
 
+      - name: Create package
+        run: |
+          tar cvzf cstest.tar.gz cstest
+
+      - name: Upload package
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: cstest-linux.tar.gz
+          path: cstest.tar.gz
+
   windows-build:
     name: Windows build
     runs-on: windows-latest
@@ -50,6 +60,16 @@ jobs:
 
       - name: Running the tests
         run: cstest.exe -help
+
+      - name: Create package
+        run: |
+          7z.exe a -tzip -r cstest.zip cstest.exe
+
+      - name: Upload package
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: cstest-windows.zip
+          path: cstest.zip
 
   macOS-build:
     name: MacOS build
@@ -77,3 +97,13 @@ jobs:
 
       - name: Running the tests
         run: ./cstest -help
+
+      - name: Create package
+        run: |
+          tar cvzf cstest.tar.gz cstest
+
+      - name: Upload package
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: cstest-macOS.tar.gz
+          path: cstest.tar.gz
