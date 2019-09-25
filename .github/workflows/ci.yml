@@ -27,7 +27,13 @@ jobs:
         run: go build -v -i -o cstest .
 
       - name: Running the tests
-        run: ./cstest -help
+        run: |
+          ./cstest -help
+          ./cstest --help
+          ./cstest -config tests/positive0/config.json
+          ./cstest -config tests/positive1/config.json
+          ./cstest --config=tests/positive1/config.json
+          ./cstest --config=tests/positive2/config.json
 
 #      - name: Create package
 #        run: |
@@ -61,7 +67,13 @@ jobs:
         run: go build -v -i -o cstest.exe .
 
       - name: Running the tests
-        run: cstest.exe -help
+        run: |
+          cstest.exe -help
+          cstest.exe --help
+          cstest.exe -config tests/positive0/config.json
+          cstest.exe -config tests/positive1/config.json
+          cstest.exe --config=tests/positive1/config.json
+          cstest.exe --config=tests/positive2/config.json
 
 #      - name: Create package
 #        run: |
@@ -100,7 +112,13 @@ jobs:
         run: go build -v -i -o cstest .
 
       - name: Running the tests
-        run: ./cstest -help
+        run: |
+          ./cstest -help
+          ./cstest --help
+          ./cstest -config tests/positive0/config.json
+          ./cstest -config tests/positive1/config.json
+          ./cstest --config=tests/positive1/config.json
+          ./cstest --config=tests/positive2/config.json
 
 #      - name: Create package
 #        run: |
