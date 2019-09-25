@@ -31,13 +31,14 @@ jobs:
 
       - name: Create package
         run: |
-          tar cvzf cstest.tar.gz cstest
+          tar cvzf cstest-linux.tar.gz cstest
 
       - name: Upload package
-        uses: actions/upload-artifact@v1.0.0
+        uses: skx/github-action-publish-binaries@54e5edf6f0a5bc3ee3b23b121e8f82828d11dfe6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: cstest-linux.tar.gz
-          path: cstest.tar.gz
+          args: cstest-linux.tar.gz
 
   windows-build:
     name: Windows build
