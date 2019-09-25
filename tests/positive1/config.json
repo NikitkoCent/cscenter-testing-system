@@ -1,0 +1,11 @@
+{
+  "executable": "echo",
+  "tests":
+  [
+    {
+      "name": "test1",
+      "params": ["Hello, world!"],
+      "reference": "tests/positive1/reference.txt"
+    }
+  ]
+}
