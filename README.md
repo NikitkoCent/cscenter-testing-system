@@ -11,6 +11,7 @@ Testing system for Computer Science Center C++ course.
       "name": "test1",
       "params": ["param1", "param2", "param3"],
       "reference": "path/to/correct-output-file",
+      "tested_file": "path/to/tested-file",
       "exitCodes": [ 0, 1, 2, 3 ]
     },
     ...
@@ -25,6 +26,47 @@ Testing system for Computer Science Center C++ course.
 * `exitCodes`: Optional. Determines valid exit codes of the executable invocation. `[0]` by default;
 * `reference`: Required. File contents of which will be treated as correct for `stdout` output of the executable invocation;
 * `tested_file`: Optional. File contents of which will be tested (compared with `reference` file). If ommited, `stdout` stream of the execution will be tested.
+
+### Examples
+* Test that check `stdout` of `echo` command:
+    ```json
+    {
+      "executable": "echo",
+      "tests":
+      [
+        {
+          "name": "test1",
+          "params": ["Hello, world!"],
+          "reference": "echo-with-hello-world.txt"
+        },
+        {
+          "name": "test2",
+          "reference": "echo-empty.txt"
+        }
+      ]
+    }
+    ```
+* Test that check correctness of files copying via `cp` command:
+    ```json
+    {
+      "executable": "cp",
+      "tests":
+      [
+        {
+          "name": "copy empty file",
+          "params": ["existing-empty-file.txt", "empty-copy.txt"],
+          "reference": "existing-empty-file.txt",
+          "tested_file": "empty-copy.txt"
+        },
+        {
+          "name": "copy this exe (windows-only)",
+          "params": ["cstest.exe", "cstest-copy.exe"],
+          "reference": "cstest.exe",
+          "tested_file": "cstest-copy.exe"
+        }
+      ]
+    }
+    ```
 
 ## Usage
 ```shell script
