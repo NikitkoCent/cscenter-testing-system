@@ -9,7 +9,7 @@
     },
 	{
       "name": "test2",
-      "reference": "tests/positive1/reference2.txt"
+      "reference": "tests/positive2/reference2.txt"
     }
   ]
 }
