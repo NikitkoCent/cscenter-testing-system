@@ -36,9 +36,9 @@ jobs:
           ./cstest --config=tests/positive2/config.json
           ./cstest --config=tests/positive3/config.json
 
-#      - name: Create package
-#        run: |
-#          tar cvzf cstest.tar.gz cstest
+      - name: Create package
+        run: |
+          tar cvzf cstest-linux.tar.gz cstest
 
       - name: Upload package
         uses: actions/upload-artifact@v1.0.0
@@ -47,6 +47,15 @@ jobs:
 #          path: cstest.tar.gz
           name: cstest-linux
           path: cstest
+
+      - name: Create GitHub draft release (if it's tagged build)
+        uses: softprops/action-gh-release@b28d8151ad6190ad35959a52fb26b9433c69009f
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: cstest-linux.tar.gz
+          draft: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   windows-build:
     name: Windows build
@@ -77,9 +86,9 @@ jobs:
           cstest.exe --config=tests/positive2/config.json
           cstest.exe --config=tests/positive3/config.json
 
-#      - name: Create package
-#        run: |
-#          7z.exe a -tzip -r cstest.zip cstest.exe
+      - name: Create package
+        run: |
+          7z.exe a -tzip -r cstest-windows.zip cstest.exe
 
       - name: Upload package
         uses: actions/upload-artifact@v1.0.0
@@ -88,6 +97,15 @@ jobs:
 #          path: cstest.zip
           name: cstest-windows
           path: cstest.exe
+
+      - name: Create GitHub draft release (if it's tagged build)
+        uses: softprops/action-gh-release@b28d8151ad6190ad35959a52fb26b9433c69009f
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: cstest-windows.zip
+          draft: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   macOS-build:
     name: MacOS build
@@ -123,9 +141,9 @@ jobs:
           ./cstest --config=tests/positive2/config.json
           ./cstest --config=tests/positive3/config.json
 
-#      - name: Create package
-#        run: |
-#          tar cvzf cstest.tar.gz cstest
+      - name: Create package
+        run: |
+          tar cvzf cstest-macOS.tar.gz cstest
 
       - name: Upload package
         uses: actions/upload-artifact@v1.0.0
@@ -134,3 +152,12 @@ jobs:
 #          path: cstest.tar.gz
           name: cstest-macOS
           path: cstest
+
+      - name: Create GitHub draft release (if it's tagged build)
+        uses: softprops/action-gh-release@b28d8151ad6190ad35959a52fb26b9433c69009f
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: cstest-macOS.tar.gz
+          draft: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
