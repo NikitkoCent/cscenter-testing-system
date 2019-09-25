@@ -49,16 +49,13 @@ func ReadTestsConfig(path string) (TestsConfig, error) {
 	}
 
 	if result.Executable == nil {
-		return result, createNotFoundFieldError("name")
+		return result, createNotFoundFieldError("executable")
 	}
 	for i := range result.Tests {
 		if len(result.Tests[i].Name) == 0 {
 			result.Tests[i].Name = fmt.Sprintf("Unnamed~%d", i)
 		}
 
-		if result.Tests[i].ExecParams == nil {
-			return result, createTestNotFoundFieldError("params", result.Tests[i].Name)
-		}
 		if result.Tests[i].ReferencePath == nil {
 			return result, createTestNotFoundFieldError("reference", result.Tests[i].Name)
 		}
