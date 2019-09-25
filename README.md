@@ -1,7 +1,7 @@
 # cscenter-testing-system
 Testing system for Computer Science Center C++ course.
 
-## Tests JSON file format
+## Tests JSON configuration file format
 ```json
 {
   "executable": "path/to/exe",
@@ -9,7 +9,7 @@ Testing system for Computer Science Center C++ course.
   [
     {
       "name": "test1",
-      "params": "param1 param2 param3",
+      "params": ["param1", "param2", "param3"],
       "reference": "path/to/correct-output-file",
       "exitCodes": [ 0, 1, 2, 3 ]
     },
@@ -20,7 +20,21 @@ Testing system for Computer Science Center C++ course.
 
 ### Fields description
 * `executable`: Required. Path to tested executable
-* `name`: Optional. Name of the test that will be displayed. Value of the field `params` by default.
+* `name`: Optional. Name of the test that will be displayed. `Unnamed~i` by default where `i` is test index.
 * `reference`: Required. File contents of which will be treated as correct for `stdout` output of the executable invocation.
-* `params`: Required. Parameters that will be passed to tested executable at invocation like `path/to/exe param1 param2 param3`.
+* `params`: Optional. Parameters that will be passed to tested executable at invocation like `path/to/exe param1 param2 param3`. Empty array by default.
 * `exitCodes`: Optional. Determines valid exit codes of the executable invocation. `[0]` by default.
+
+## Usage
+```shell script
+# same: ./cstest -help
+./cstest --help
+Usage of ./cstest:
+  -config string
+        Path to tests configuration JSON file
+
+# same: ./cstest --config path/to/config.json
+# same: ./cstest -config=path/to/config.json
+# same: ./cstest --config=path/to/config.json
+./cstest -config path/to/config.json
+```
