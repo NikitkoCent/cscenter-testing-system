@@ -30,11 +30,11 @@ jobs:
         run: |
           ./cstest -help
           ./cstest --help
-          ./cstest -config tests/positive0/config.json -exe "echo"
-          ./cstest -config tests/positive1/config.json -exe "echo"
-          ./cstest --config=tests/positive1/config.json --exe="echo"
-          ./cstest --config=tests/positive2/config.json --exe="echo"
-          ./cstest --config=tests/positive3/config.json --exe="cp"
+          ./cstest -config tests/positive0/config.json
+          ./cstest -config tests/positive1/config.json
+          ./cstest --config=tests/positive1/config.json
+          ./cstest --config=tests/positive2/config.json
+          ./cstest --config=tests/positive3/config.json
 
 #      - name: Create package
 #        run: |
