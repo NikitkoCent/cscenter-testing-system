@@ -73,7 +73,7 @@ jobs:
 #          name: cstest-windows.zip
 #          path: cstest.zip
           name: cstest-windows
-          path: cstest
+          path: cstest.exe
 
   macOS-build:
     name: MacOS build
