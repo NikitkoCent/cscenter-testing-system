@@ -27,6 +27,7 @@ jobs:
         run: go build -v -i -o cstest .
 
       - name: Running the tests
+        run: echo stub
 
   windows-build:
     name: Windows build
@@ -47,6 +48,7 @@ jobs:
         run: go build -v -i -o cstest.exe .
 
       - name: Running the tests
+        run: echo stub
 
   macOS-build:
     name: MacOS build
@@ -73,3 +75,4 @@ jobs:
         run: go build -v -i -o cstest .
 
       - name: Running the tests
+        run: echo stub
