@@ -27,7 +27,12 @@ jobs:
         run: go build -v -i -o cstest .
 
       - name: Running the tests
-        run: ./cstest -help
+        run: |
+          ./cstest -help
+          ./cstest --help
+          ./cstest -config tests/positive1/config.json
+          ./cstest --config=tests/positive1/config.json
+          ./cstest --config=tests/positive2/config.json
 
 #      - name: Create package
 #        run: |
