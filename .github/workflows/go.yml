@@ -25,6 +25,9 @@ jobs:
           fi
 
       - name: Build
+        run: go build -v -i -o cstest .
+
+      - name: Running tests
         run: |
-          go build -v -i -o cstest .
+          ./cstest -help
           ./cstest --help
