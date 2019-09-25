@@ -30,6 +30,7 @@ jobs:
         run: |
           ./cstest -help
           ./cstest --help
+          ./cstest -config tests/positive0/config.json
           ./cstest -config tests/positive1/config.json
           ./cstest --config=tests/positive1/config.json
           ./cstest --config=tests/positive2/config.json
@@ -69,6 +70,7 @@ jobs:
         run: |
           cstest.exe -help
           cstest.exe --help
+          cstest.exe -config tests/positive0/config.json
           cstest.exe -config tests/positive1/config.json
           cstest.exe --config=tests/positive1/config.json
           cstest.exe --config=tests/positive2/config.json
@@ -113,6 +115,7 @@ jobs:
         run: |
           ./cstest -help
           ./cstest --help
+          ./cstest -config tests/positive0/config.json
           ./cstest -config tests/positive1/config.json
           ./cstest --config=tests/positive1/config.json
           ./cstest --config=tests/positive2/config.json
