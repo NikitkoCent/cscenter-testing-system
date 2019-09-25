@@ -34,6 +34,7 @@ jobs:
           ./cstest -config tests/positive1/config.json
           ./cstest --config=tests/positive1/config.json
           ./cstest --config=tests/positive2/config.json
+          ./cstest --config=tests/positive3/config.json
 
 #      - name: Create package
 #        run: |
@@ -74,6 +75,7 @@ jobs:
           cstest.exe -config tests/positive1/config.json
           cstest.exe --config=tests/positive1/config.json
           cstest.exe --config=tests/positive2/config.json
+          cstest.exe --config=tests/positive3/config.json
 
 #      - name: Create package
 #        run: |
@@ -119,6 +121,7 @@ jobs:
           ./cstest -config tests/positive1/config.json
           ./cstest --config=tests/positive1/config.json
           ./cstest --config=tests/positive2/config.json
+          ./cstest --config=tests/positive3/config.json
 
 #      - name: Create package
 #        run: |

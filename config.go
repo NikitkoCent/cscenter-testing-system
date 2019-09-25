@@ -13,6 +13,7 @@ type Test struct {
 	Name string `json:"name"`
 	ExecParams []string `json:"params"`
 	ReferencePath *string `json:"reference"`
+	TestedFilePath *string `json:"tested_file"`
 	ExitCodes []int `json:"exitCodes"`
 }
 

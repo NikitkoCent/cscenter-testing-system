@@ -100,7 +100,15 @@ func main() {
 
 		log.Printf("\tExecuting '%s %s' ...\n", *config.Executable, execParamsToString(test.ExecParams))
 
-		out, err := exec.Command(*config.Executable, test.ExecParams...).Output()
+		cmd := exec.Command(*config.Executable, test.ExecParams...)
+		var out []byte
+
+		if test.TestedFilePath == nil {
+			out, err = cmd.Output()
+		} else {
+			err = cmd.Run()
+		}
+
 		if err != nil {
 			if exitError, ok := err.(*exec.ExitError); ok {
 				exitCodeIsOk := false
@@ -113,10 +121,25 @@ func main() {
 				}
 
 				if !exitCodeIsOk {
-					registerFailedTest(exitError.ExitCode())
+					registerFailedTest("Invalid exit code:", exitError.ExitCode())
 					continue
 				}
 			} else {
+				registerFailedTest(err)
+				continue
+			}
+		}
+
+		if test.TestedFilePath != nil {
+			log.Printf("\tGathering results (from '%s') ...\n", *test.TestedFilePath)
+
+			var file *os.File
+			if file, err = os.Open(*test.TestedFilePath); err == nil {
+				out, err = ioutil.ReadAll(file)
+				file.Close()
+				file = nil
+			}
+			if err != nil {
 				registerFailedTest(err)
 				continue
 			}
