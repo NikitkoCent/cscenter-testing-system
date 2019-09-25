@@ -36,7 +36,7 @@ jobs:
       - name: Upload package
         uses: actions/upload-artifact@v1.0.0
         with:
-          name: cstest-linux.tar.gz
+          name: cstest-linux-${{github.ref}}.tar.gz
           path: cstest.tar.gz
 
   windows-build:
@@ -68,7 +68,7 @@ jobs:
       - name: Upload package
         uses: actions/upload-artifact@v1.0.0
         with:
-          name: cstest-windows.zip
+          name: cstest-windows-${{github.ref}}.zip
           path: cstest.zip
 
   macOS-build:
@@ -105,5 +105,5 @@ jobs:
       - name: Upload package
         uses: actions/upload-artifact@v1.0.0
         with:
-          name: cstest-macOS.tar.gz
+          name: cstest-macOS-${{github.ref}}.tar.gz
           path: cstest.tar.gz
