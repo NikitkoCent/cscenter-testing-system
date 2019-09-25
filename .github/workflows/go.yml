@@ -1,4 +1,4 @@
-name: Go
+name: CI
 on: [push]
 jobs:
 
@@ -25,4 +25,6 @@ jobs:
           fi
 
       - name: Build
-        run: go build -v -i -o cstest .
+        run: |
+          go build -v -i -o cstest .
+          ./cstest --help
