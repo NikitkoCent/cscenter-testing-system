@@ -19,11 +19,12 @@ Testing system for Computer Science Center C++ course.
 ```
 
 ### Fields description
-* `executable`: Required. Path to tested executable
-* `name`: Optional. Name of the test that will be displayed. `Unnamed~i` by default where `i` is test index.
-* `reference`: Required. File contents of which will be treated as correct for `stdout` output of the executable invocation.
-* `params`: Optional. Parameters that will be passed to tested executable at invocation like `path/to/exe param1 param2 param3`. Empty array by default.
-* `exitCodes`: Optional. Determines valid exit codes of the executable invocation. `[0]` by default.
+* `name`: Optional. Name of the test that will be displayed. `Unnamed~i` by default where `i` is the test index;
+* `executable`: Required. Path to tested executable;
+* `params`: Optional. Parameters that will be passed to tested executable at invocation like `path/to/exe param1 param2 param3`. Empty array by default;
+* `exitCodes`: Optional. Determines valid exit codes of the executable invocation. `[0]` by default;
+* `reference`: Required. File contents of which will be treated as correct for `stdout` output of the executable invocation;
+* `tested_file`: Optional. File contents of which will be tested (compared with `reference` file). If ommited, `stdout` stream of the execution will be tested.
 
 ## Usage
 ```shell script
